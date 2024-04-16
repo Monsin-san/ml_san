@@ -299,20 +299,6 @@ if problem_type == '分類' and 'model_trained' in st.session_state and st.sessi
         plt.xlabel("Importance")  # x軸のラベル
         plt.ylabel("Features")  # y軸のラベル
         st.pyplot(plt)
-        
-    report = classification_report(y_test, y_pred)
-    st.text("分類レポート:\n" + report)
-    
-    # 混同行列の表示
-    y_pred = model.predict(X_test)
-    conf_mat = confusion_matrix(y_test, y_pred)
-    st.write("混同行列:")
-    fig, ax = plt.subplots()
-    sns.heatmap(conf_mat, annot=True, fmt="d", ax=ax, cmap='Blues')
-    ax.set_xlabel('予測ラベル')
-    ax.set_ylabel('実際のラベル')
-    st.pyplot(fig)
-
                 
 if problem_type == '回帰' and 'model_trained' in st.session_state and st.session_state.model_trained:
     model = st.session_state.model # トレーニング済みモデルを取得
