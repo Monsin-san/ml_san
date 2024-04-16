@@ -1,13 +1,3 @@
-#%%
-#自宅
-#conda activate py39
-#streamlit run G:\マイドライブ\python\python_code\streamlit_app_nekoai\app.py
-#path C:\Users\yazaw\anaconda3\envs\py39
-#大学
-#streamlit run F:\マイドライブ\python\python_code\streamlit_app_nekoai\app.py
-
-#pip install pygments pandas scikit-learn streamlit japanize-matplotlib seaborn
-
 import streamlit as st
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -28,8 +18,7 @@ from sklearn.tree import plot_tree
 st.write("電卓ネコシリーズ第２弾！")
 st.title("ネコでも使える！会計AI分析")
 
-title = r"G:\マイドライブ\python\python_code\streamlit_app_nekoai\nekoai_title.png" #home
-#title = r"F:\マイドライブ\python\python_code\streamlit_app_nekoai\nekoai_title.png" #office
+title = "\nekoai_title.png" 
 image = Image.open(title)
 st.image(image,use_column_width=True)
 
@@ -42,16 +31,13 @@ st.write("機械学習とは！？")
 st.write("機械学習とは、「データから知識を引き出す」ことをいいます。機械学習には「教師あり学習」に加えて、「教師なし学習」「強化学習」があります。このアプリでは、教師あり学習による分類・回帰モデルの学習とモデルを使った予測を行うことができます。本当はアルゴリズムの仕組みやプログラミング言語の習得などちょっと面倒な作業があるのですが、ここではクリックしていくつか設定するだけ機械学習モデルが構築できます。")
 st.write("それではサイドバーに表示されているステップ１から進めていきましょう！")
 
-st.write("使い方の詳細は○○を参照してください。")
-
 st.sidebar.title("ステップ１：データの収集")
 st.sidebar.write("学習用のデータをアップロードしてください。")
 # ファイルアップローダーの設置
 uploaded_file = st.sidebar.file_uploader("CSVファイルをアップロードしてください", type=["csv"])
 st.sidebar.write("サンプルデータを下記からダウンロードできます。")
 # ファイルパス
-file_path = r"G:\マイドライブ\python\python_code\streamlit_app_nekoai\sample_data.csv" #home
-#file_path = r"F:\マイドライブ\python\python_code\streamlit_app_nekoai\sample_data_2.csv" #office
+file_path = "\sample_data.csv"
 # ファイルが存在するかチェック
 if os.path.exists(file_path):
     # ダウンロードボタン
