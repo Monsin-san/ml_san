@@ -18,7 +18,7 @@ from sklearn.tree import plot_tree
 st.write("電卓ネコシリーズ第２弾！")
 st.title("ネコでも使える！会計AI分析")
 
-title = "\nekoai_title.png" 
+title = "nekoai_title.png" 
 image = Image.open(title)
 st.image(image,use_column_width=True)
 
@@ -37,7 +37,7 @@ st.sidebar.write("学習用のデータをアップロードしてください�
 uploaded_file = st.sidebar.file_uploader("CSVファイルをアップロードしてください", type=["csv"])
 st.sidebar.write("サンプルデータを下記からダウンロードできます。")
 # ファイルパス
-file_path = "\sample_data.csv"
+file_path = "sample_data.csv"
 # ファイルが存在するかチェック
 if os.path.exists(file_path):
     # ダウンロードボタン
