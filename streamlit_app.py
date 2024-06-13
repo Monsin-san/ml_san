@@ -392,7 +392,7 @@ if 'model_trained' in st.session_state and st.session_state.model_trained:
         if hasattr(model, "predict_proba"):
             prediction = model.predict_proba(input_data_np)[0, 1]
             message = interpret_probability(prediction)
-            st.write(message)
+            st.markdown(f"**{message}**")
         else:
             prediction = model.predict(input_data_np)
             st.write(f"予測結果: {prediction[0]:.2f}")
