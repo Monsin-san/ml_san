@@ -137,7 +137,7 @@ if uploaded_file is not None:
             # ここで数値に変換する処理を促すか、自動で変換するコードを追加することもできます。
 
 st.title("ステップ４：学習")
-st.write("①モデルの選択")
+st.write("①学習の設定")
 
 if 'features' in locals() or 'features' in globals():
     if features:
@@ -146,11 +146,11 @@ if 'features' in locals() or 'features' in globals():
 
         st.session_state.problem_type = problem_type  # セッション状態に問題のタイプを保存
 
-        # モデルの種類を選択
+        # アルゴリズムを選択
         if problem_type == '分類':
             if not all(value in [0, 1] for value in unique_values):
                 st.error("分類タスクの教師データは離散変数（0、1）を入れてください。")
-            model_type = st.selectbox("モデルの種類を選択してください", [
+            model_type = st.selectbox("アルゴリズムを選択してください", [
                 'K-最近傍法',
                 'ロジスティック回帰',
                 '決定木',
@@ -174,7 +174,7 @@ if 'features' in locals() or 'features' in globals():
             if data[label].dtype in ['int64', 'float64'] and all(data[label] % 1 == 0) and data[label].between(0, 30).all():
                 st.warning("回帰タスクの教師データには、離散変数（カテゴリ）ではなく連続変数を選択してください。")
             
-            model_type = st.selectbox("モデルの種類を選択してください", [
+            model_type = st.selectbox("アルゴリズムを選択してください", [
                 'K-最近傍法',
                 '線形回帰',
                 '決定木',
