@@ -249,6 +249,30 @@ if 'features' in locals() or 'features' in globals():
 
 st.title("ステップ５：評価")
 st.write("トレーニングが完了したモデルをテストデータに適用して精度を評価します。")
+
+# 確率に基づくメッセージを返す関数
+def interpret_probability(probability):
+    if probability <= 0.10:
+        return f"予測確率は{probability:.2f}です。ほとんどあり得ないでしょう。"
+    elif probability <= 0.20:
+        return f"予測確率は{probability:.2f}です。かなり低いでしょう。"
+    elif probability <= 0.30:
+        return f"予測確率は{probability:.2f}です。低いでしょう。"
+    elif probability <= 0.40:
+        return f"予測確率は{probability:.2f}です。やや低いでしょう。"
+    elif probability <= 0.50:
+        return f"予測確率は{probability:.2f}です。どちらともいえないでしょう。"
+    elif probability <= 0.60:
+        return f"予測確率は{probability:.2f}です。やや確率は高いでしょう。"
+    elif probability <= 0.70:
+        return f"予測確率は{probability:.2f}です。確率は高いでしょう。"
+    elif probability <= 0.80:
+        return f"予測確率は{probability:.2f}です。割と確率は高いでしょう。"
+    elif probability <= 0.90:
+        return f"予測確率は{probability:.2f}です。非常に確率は高いでしょう。"
+    else:
+        return f"予測確率は{probability:.2f}です。ほぼ確実でしょう。"
+
 if problem_type == '分類' and 'model_trained' in st.session_state and st.session_state.model_trained:
     model = st.session_state.model # トレーニング済みモデルを取得
     X_test = st.session_state.X_test  # X_testをセッション状態から取得
@@ -367,7 +391,8 @@ if 'model_trained' in st.session_state and st.session_state.model_trained:
         # モデルが確率を提供する場合はpredict_probaを使用、それ以外はpredictを使用
         if hasattr(model, "predict_proba"):
             prediction = model.predict_proba(input_data_np)[0, 1]
-            st.write(f"予測確率: {prediction:.2f}")
+            message = interpret_probability(prediction)
+            st.write(message)
         else:
             prediction = model.predict(input_data_np)
             st.write(f"予測結果: {prediction[0]:.2f}")
