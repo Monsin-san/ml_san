@@ -395,8 +395,9 @@ if 'model_trained' in st.session_state and st.session_state.model_trained:
             st.markdown(f"**{message}**")
         else:
             prediction = model.predict(input_data_np)
-            st.write(f"予測結果: {prediction[0]:.2f}")
-
+            prediction_percentage = prediction * 100
+            st.markdown(f"**予測値は{prediction_percentage:.2f}%です。**")
+            
 st.title('おわりに')
 st.write("AI分析はいかがでしたでしょうか？次はぜひ自分の興味のあるデータを入れてモデルをつくってみましょう！")
 
