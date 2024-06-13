@@ -394,7 +394,7 @@ if 'model_trained' in st.session_state and st.session_state.model_trained:
             message = interpret_probability(prediction)
             st.markdown(f"**{message}**")
         else:
-            prediction = model.predict(input_data_np)
+            prediction = model.predict(input_data_np)[0]
             prediction_percentage = prediction * 100
             st.markdown(f"**予測値は{prediction_percentage:.2f}%です。**")
             
