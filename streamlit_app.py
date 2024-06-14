@@ -282,18 +282,18 @@ if problem_type == '分類' and 'model_trained' in st.session_state and st.sessi
     y_pred = model.predict(X_test)
 
     # 精度の算出
-    accuracy = accuracy_score(y_test, y_pred)
-    st.write(f'モデルの正解率（Accuracy）: {accuracy:.2f}')
+    accuracy = accuracy_score(y_test, y_pred) * 100
+    st.write(f'モデルの正解率（Accuracy）: {accuracy:.1f}%')
 
     # ROC曲線とAUCの表示
     if hasattr(model, "predict_proba"):
         y_pred_proba = model.predict_proba(X_test)[:, 1]
         fpr, tpr, _ = roc_curve(y_test, y_pred_proba)
-        roc_auc = auc(fpr, tpr)
+        roc_auc = auc(fpr, tpr) * 100
 
         st.write("AUCスコアとROC曲線:")
         plt.figure()
-        plt.plot(fpr, tpr, label=f'AUC = {roc_auc:.2f}')
+        plt.plot(fpr, tpr, label=f'AUC = {roc_auc:.1f}%')
         plt.plot([0, 1], [0, 1], 'k--')  # 50% AUCの線
         plt.xlim([0.0, 1.0])
         plt.ylim([0.0, 1.05])
@@ -302,7 +302,7 @@ if problem_type == '分類' and 'model_trained' in st.session_state and st.sessi
         plt.title('ROC（Receiver Operating Characteristic）')
         plt.legend(loc="lower right")
         st.pyplot(plt)
-
+            
     # 決定木のツリー構造を出力
     if model_type == '決定木':
         plt.figure(figsize=(20,10))
