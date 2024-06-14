@@ -283,7 +283,7 @@ if problem_type == '分類' and 'model_trained' in st.session_state and st.sessi
 
     # 精度の算出
     accuracy = accuracy_score(y_test, y_pred) * 100
-    st.markdown(f'モデルの正解率（Accuracy）: {accuracy:.1f}%')
+    st.markdown(f'**モデルの正解率（Accuracy）: {accuracy:.1f}%**')
 
     # ROC曲線とAUCの表示
     if hasattr(model, "predict_proba"):
