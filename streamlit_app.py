@@ -252,26 +252,27 @@ st.write("トレーニングが完了したモデルをテストデータに適�
 
 # 確率に基づくメッセージを返す関数
 def interpret_probability(probability):
-    if probability <= 0.10:
-        return f"予測確率は{probability:.2f}です。ほとんどあり得ないでしょう。"
-    elif probability <= 0.20:
-        return f"予測確率は{probability:.2f}です。かなり低いでしょう。"
-    elif probability <= 0.30:
-        return f"予測確率は{probability:.2f}です。低いでしょう。"
-    elif probability <= 0.40:
-        return f"予測確率は{probability:.2f}です。やや低いでしょう。"
-    elif probability <= 0.50:
-        return f"予測確率は{probability:.2f}です。どちらともいえないでしょう。"
-    elif probability <= 0.60:
-        return f"予測確率は{probability:.2f}です。やや確率は高いでしょう。"
-    elif probability <= 0.70:
-        return f"予測確率は{probability:.2f}です。確率は高いでしょう。"
-    elif probability <= 0.80:
-        return f"予測確率は{probability:.2f}です。割と確率は高いでしょう。"
-    elif probability <= 0.90:
-        return f"予測確率は{probability:.2f}です。非常に確率は高いでしょう。"
+    probability_percent = probability * 100
+    if probability_percent <= 10:
+        return f"予測確率は{probability_percent:.1f}%です。ほとんどあり得ないでしょう。"
+    elif probability_percent <= 20:
+        return f"予測確率は{probability_percent:.1f}%です。かなり低いでしょう。"
+    elif probability_percent <= 30:
+        return f"予測確率は{probability_percent:.1f}%です。低いでしょう。"
+    elif probability_percent <= 40:
+        return f"予測確率は{probability_percent:.1f}%です。やや低いでしょう。"
+    elif probability_percent <= 50:
+        return f"予測確率は{probability_percent:.1f}%です。どちらともいえないでしょう。"
+    elif probability_percent <= 60:
+        return f"予測確率は{probability_percent:.1f}%です。やや確率は高いでしょう。"
+    elif probability_percent <= 70:
+        return f"予測確率は{probability_percent:.1f}%です。確率は高いでしょう。"
+    elif probability_percent <= 80:
+        return f"予測確率は{probability_percent:.1f}%です。割と確率は高いでしょう。"
+    elif probability_percent <= 90:
+        return f"予測確率は{probability_percent:.1f}%です。非常に確率は高いでしょう。"
     else:
-        return f"予測確率は{probability:.2f}です。ほぼ確実でしょう。"
+        return f"予測確率は{probability_percent:.1f}%です。ほぼ確実でしょう。"
 
 if problem_type == '分類' and 'model_trained' in st.session_state and st.session_state.model_trained:
     model = st.session_state.model # トレーニング済みモデルを取得
