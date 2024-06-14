@@ -291,6 +291,19 @@ if problem_type == '分類' and 'model_trained' in st.session_state and st.sessi
         fpr, tpr, _ = roc_curve(y_test, y_pred_proba)
         roc_auc = auc(fpr, tpr) * 100
 
+        # AUCスコアに応じたコメント
+        if roc_auc >= 90:
+            performance_comment = "### 優れた性能でしょう。"
+        elif 80 <= roc_auc < 90:
+            performance_comment = "### 良好な性能でしょう。"
+        elif 70 <= roc_auc < 80:
+            performance_comment = "### まずまずの性能でしょう。"
+        elif 60 <= roc_auc < 70:
+            performance_comment = "### 低い性能でしょう。"
+        else:
+            performance_comment = "### ランダムに近い性能でしょう。"
+
+        st.markdown(f"**AUCスコアは{roc_auc:.1f}%です。{performance_comment}**")
         st.write("AUCスコアとROC曲線:")
         plt.figure()
         plt.plot(fpr, tpr, label=f'AUC = {roc_auc:.1f}%')
