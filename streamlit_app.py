@@ -303,7 +303,7 @@ if problem_type == '分類' and 'model_trained' in st.session_state and st.sessi
         else:
             performance_comment = " ランダムに近い性能でしょう。"
 
-        st.markdown(f"**AUCスコアは{roc_auc:.1f}%です。{performance_comment}**")
+        st.markdown(f"**AUCスコア:{roc_auc:.1f}%{performance_comment}**")
         st.write("AUCスコアとROC曲線:")
         plt.figure()
         plt.plot(fpr, tpr, label=f'AUC = {roc_auc:.1f}%')
